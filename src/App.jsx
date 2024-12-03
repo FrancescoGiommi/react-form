@@ -16,22 +16,35 @@ import { useState } from "react";
 import "./App.css";
 
 function App() {
-  const [titleArticle, setTitleArticle] = useState("Titolo 1");
+  const [titleArticle, setTitleArticle] = useState("");
+  const [article, setArticle] = useState([]);
 
+  const HandleSubmit = (event) => {
+    event.preventDefault();
+    const AddArticle = [...article, titleArticle];
+    setArticle(AddArticle);
+  };
   return (
     <>
-      <h1>My blog</h1>
-      <form className="container">
-        <div>
-          <input
-            type="text"
-            value={titleArticle}
-            onChange={(e) => {
-              setTitleArticle(e.target.value);
-            }}
-          />
-        </div>
-      </form>
+      <div className="container">
+        <h1>My blog</h1>
+        <form onSubmit={HandleSubmit} className="form-control">
+          <div>
+            <input
+              type="text"
+              value={titleArticle}
+              onChange={(e) => {
+                setTitleArticle(e.target.value);
+              }}
+            />
+            <button>Invia</button>
+          </div>
+        </form>
+        <hr />
+        {article.map((name, id) => (
+          <li key={id}>Articolo di {name}</li>
+        ))}
+      </div>
     </>
   );
 }
