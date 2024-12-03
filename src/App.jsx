@@ -29,16 +29,17 @@ function App() {
 
     /* Creo una copia dell'array originale */
     const AddArticle = [...article, titleArticle];
-
     setArticle(AddArticle);
-
-    const removeArticle = (i) => {
-      const deleteArticle = article.filter((item, index) => {
-        return index !== i;
-      });
-      setArticle(deleteArticle);
-    };
   };
+
+  /* Funzione per cancellare l'elemento */
+  const removeArticle = (id) => {
+    const deleteArticle = article.filter((item, index) => {
+      return index !== id;
+    });
+    setArticle(deleteArticle);
+  };
+
   return (
     <>
       <div className="container">
@@ -52,22 +53,24 @@ function App() {
                 setTitleArticle(e.target.value);
               }}
             />
-            <button>Invia</button>
+            <button className="btn btn-primary mx-2">Invia</button>
           </div>
         </form>
         <hr />
         {/* Creo una copia con il map e aggiunngo l'elemento al DOM */}
-        {article.map((name, id) => (
-          <li className="m-3" key={id}>
-            Articolo di {name}
-            <button
-              onClick={() => removeArticle()}
-              className="btn btn-danger mx-2"
-            >
-              <i className="fa-solid fa-trash"></i>
-            </button>
-          </li>
-        ))}
+        <ul>
+          {article.map((name, id) => (
+            <li className="m-3" key={id}>
+              Articolo di {name}
+              <button
+                onClick={() => removeArticle(id)}
+                className="btn btn-danger mx-2"
+              >
+                <i className="fa-solid fa-trash"></i>
+              </button>
+            </li>
+          ))}
+        </ul>
       </div>
     </>
   );
