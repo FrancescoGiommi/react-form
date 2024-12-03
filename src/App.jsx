@@ -11,17 +11,25 @@ BONUS
     Implementare la funzionalità di modifica del titolo di un post.
     Aggiungere più campi al form (ad es. lo stato di un articolo - draft, published - o l’autore) */
 
+/* Importo useState  */
 import { useState } from "react";
 
 import "./App.css";
 
 function App() {
+  /* Uso lo use state per settare l'input  */
   const [titleArticle, setTitleArticle] = useState("");
+
+  /* Creo l'array vuoto  */
   const [article, setArticle] = useState([]);
 
+  /* Blocco l'invio del form con l'handler */
   const HandleSubmit = (event) => {
     event.preventDefault();
+
+    /* Creo una copia dell'array originale */
     const AddArticle = [...article, titleArticle];
+
     setArticle(AddArticle);
   };
   return (
@@ -41,6 +49,7 @@ function App() {
           </div>
         </form>
         <hr />
+        {/* Creo una copia con il map e aggiunngo l'elemento al DOM */}
         {article.map((name, id) => (
           <li key={id}>Articolo di {name}</li>
         ))}
