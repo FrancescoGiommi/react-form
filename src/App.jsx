@@ -31,6 +31,13 @@ function App() {
     const AddArticle = [...article, titleArticle];
 
     setArticle(AddArticle);
+
+    const removeArticle = (i) => {
+      const deleteArticle = article.filter((item, index) => {
+        return index !== i;
+      });
+      setArticle(deleteArticle);
+    };
   };
   return (
     <>
@@ -51,7 +58,15 @@ function App() {
         <hr />
         {/* Creo una copia con il map e aggiunngo l'elemento al DOM */}
         {article.map((name, id) => (
-          <li key={id}>Articolo di {name}</li>
+          <li className="m-3" key={id}>
+            Articolo di {name}
+            <button
+              onClick={() => removeArticle()}
+              className="btn btn-danger mx-2"
+            >
+              <i className="fa-solid fa-trash"></i>
+            </button>
+          </li>
         ))}
       </div>
     </>
