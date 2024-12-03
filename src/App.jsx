@@ -16,9 +16,18 @@ import { useState } from "react";
 import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [titleArticle, setTitleArticle] = useState("Titolo 1");
 
-  return <></>;
+  return (
+    <>
+      <h1>My blog</h1>
+      <form className="container">
+        <div>
+          <input type="text" value={titleArticle} />
+        </div>
+      </form>
+    </>
+  );
 }
 
 export default App;
