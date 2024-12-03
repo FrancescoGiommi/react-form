@@ -23,7 +23,13 @@ function App() {
       <h1>My blog</h1>
       <form className="container">
         <div>
-          <input type="text" value={titleArticle} />
+          <input
+            type="text"
+            value={titleArticle}
+            onChange={(e) => {
+              setTitleArticle(e.target.value);
+            }}
+          />
         </div>
       </form>
     </>
